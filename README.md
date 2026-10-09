@@ -2,7 +2,7 @@
 
 This **11-variable, 4-row MIP has exact optimum 1**, yet the recorded HiGHS 1.15.1 baseline reports **`Optimal`, objective 0**. An explicit feasible point attains the declared upper bound `g <= 1`; an independent standard-library checker verifies both with exact rational arithmetic.
 
-This repository contains the reproducer and verification material. **The report has not been submitted upstream, and upstream maintainers have not confirmed the finding.** See [ISSUE_EN.md](ISSUE_EN.md) for the complete model, witness, observed runtime behavior, source references, and proposed report.
+This repository contains the reproducer and verification material. **Reported upstream as [HiGHS issue #3387](https://github.com/ERGO-Code/HiGHS/issues/3387) on 2026-10-10 (JST); upstream confirmation is pending.** See [ISSUE_EN.md](ISSUE_EN.md) for the complete model, witness, observed runtime behavior, and source references.
 
 With `highspy` already installed, run from this directory:
 
