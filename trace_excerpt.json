@@ -1,0 +1,25 @@
+{
+  "analytic_center": 5.353065146424651e-07,
+  "caller": "HighsMipSolverData::finishAnalyticCenterComputation",
+  "column": "y",
+  "column_index": 3,
+  "domain_after": [
+    0,
+    0
+  ],
+  "domain_before": [
+    0.0,
+    1000.0
+  ],
+  "highs_git_hash": "04024d7",
+  "highs_version": "1.15.1",
+  "library_sha256": "4964579253b67b4525fbe4985725560732dac3b8f178356e6699f9411e64d93a",
+  "observed_objective": -0.0,
+  "observed_status": "Optimal",
+  "os": "Linux x86-64",
+  "reason": "unspecified",
+  "runtime_tolerance": 1e-06,
+  "scope": "Excerpt from an agent-run gdb observation; full local audit is retained separately.",
+  "source_solver_result_sha256": "4e4d3f207ec6e187b1a14012c4ac3c970ad92474d96cc08e7a8d383dbfae575d",
+  "source_trace_sha256": "77471a276a28877b0c461314ca55c872b9de7167c1d66e99fe7ba94eb3c3b5d0"
+}

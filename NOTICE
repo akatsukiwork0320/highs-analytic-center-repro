@@ -1,0 +1,12 @@
+HiGHS analytic-center reproduction case study
+Copyright 2026 Satoshi Kawasaki
+
+The original scripts, model input, report, and extracted observation data in
+this repository are distributed under Apache License 2.0 (see LICENSE).
+AI agents assisted in constructing, running, and checking this material.
+The 11-variable example originated in a Claude-assisted review.
+
+HiGHS/highspy is an external dependency and is not distributed here.
+The HiGHS project and its MIT license are not modified by this repository.
+This case study is independent of the HiGHS project and does not imply
+endorsement or confirmation by its maintainers.
