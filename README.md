@@ -2,7 +2,9 @@
 
 This **11-variable, 4-row MIP has exact optimum 1**, yet the recorded HiGHS 1.15.1 baseline reports **`Optimal`, objective 0**. An explicit feasible point attains the declared upper bound `g <= 1`; an independent standard-library checker verifies both with exact rational arithmetic.
 
-This repository contains the reproducer and verification material. **Reported upstream as [HiGHS issue #3387](https://github.com/ERGO-Code/HiGHS/issues/3387) on 2026-10-10 (JST). A maintainer [confirmed the bug on `latest`](https://github.com/ERGO-Code/HiGHS/issues/3387#issuecomment-6120063138) on 2026-10-12 and opened candidate fix [PR #3408](https://github.com/ERGO-Code/HiGHS/pull/3408) (open and not merged as of 2026-10-16; see [follow-up source-build verification at `7bb364c1733`](https://github.com/ERGO-Code/HiGHS/pull/3408#issuecomment-6152858701)).** See [ISSUE_EN.md](ISSUE_EN.md) for the complete model, witness, observed runtime behavior, and source references.
+This repository contains the reproducer and verification material. **Reported upstream as [HiGHS issue #3387](https://github.com/ERGO-Code/HiGHS/issues/3387) on 2026-10-10 (JST). A maintainer [confirmed the bug on `latest`](https://github.com/ERGO-Code/HiGHS/issues/3387#issuecomment-6120063138), and the fix, [PR #3408](https://github.com/ERGO-Code/HiGHS/pull/3408), was merged into `latest` on 2026-10-16 (JST) as commit [`c2ddc850`](https://github.com/ERGO-Code/HiGHS/commit/c2ddc850fc0594ea1afbae1eca3cb0b642f00537).** The [earlier source-build verification at `7bb364c1733`](https://github.com/ERGO-Code/HiGHS/pull/3408#issuecomment-6152858701) remains a record of that candidate commit. See [ISSUE_EN.md](ISSUE_EN.md) for the original model and report.
+
+A new agent-run source-build comparison on 2026-10-16 tested the merged commit against a control built from the same checkout with only `HighsMipSolverData.cpp` restored from its first parent, `9c97fd0d098eb1630b932bacee69edbf502c74e7`. On Linux x86-64, CPython 3.12.3, one thread and seed 0, the original five settings and the five settings of the [999-redundant-row variant](https://github.com/ERGO-Code/HiGHS/issues/3387#issuecomment-6128073516) all returned objective 1 on the merged build; the control reproduced objective 0 in the five previously failing settings. Exact rational checks accepted 7 of the merged build's 10 returned points, including the presolve-off API and MPS baseline points; three others had small nonzero residuals. The separate exact witness and upper bound establish optimum 1 for every tested model. This checks these examples, not general safety of the tighter fixing tolerance, solver performance, or inclusion in a released version.
 
 With `highspy` already installed, run from this directory:
 
@@ -21,7 +23,7 @@ Each output directory must be new. `baseline` performs one solve; `all` performs
 | `proved_y_bound`: presolve off, implied bound `y <= k` | Optimal 1 |
 | `mps`: supplied MPS input, presolve off | Optimal 0 |
 
-All five were measured on **Windows 11 x86-64, Python 3.12.14, highspy/HiGHS 1.15.1 (`04024d7`)**. A separate baseline under gdb on Linux x86-64 with highspy 1.15.1 also returned 0; that run used a 120-second limit and `mip_rel_gap=1e-6`. The Linux observation covers the baseline only, and these runs are not a timing comparison. Other seeds and builds are untested.
+All five were measured on **Windows 11 x86-64, Python 3.12.14, highspy/HiGHS 1.15.1 (`04024d7`)**. A separate baseline under gdb on Linux x86-64 with highspy 1.15.1 also returned 0; that run used a 120-second limit and `mip_rel_gap=1e-6`. The Linux observation covers the baseline only, and these runs are not a timing comparison. That original package-level comparison does not cover other seeds or builds; the later source-build comparison is described above.
 
 The independent proof checker needs **only Python's standard library**:
 
